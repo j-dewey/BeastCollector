@@ -3,6 +3,7 @@ pg.init()
 import entity
 import error
 import item
+from player import Player
 
 # player movement commands
 UP_BUTTON = pg.K_w
@@ -19,8 +20,8 @@ if __name__ == '__main__':
     win = pg.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
     clock = pg.time.Clock()
 
-    player = entity.Player([400, 300])
-    player.add_party_member("fire_dog", pg.Rect([100, 200, 200, 200]), entity.Player.SPEED)
+    player = Player([400, 300])
+    player.add_party_member("fire_dog", pg.Rect([100, 200, 200, 200]), Player.SPEED)
 
     while True:
         dt = clock.tick(MAX_FPS) / 1000.0
