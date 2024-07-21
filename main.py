@@ -3,7 +3,10 @@ pg.init()
 
 import entity
 import error
+# to avoid circular imports, specific objects are seperated
+# from abstract class declerations
 import item
+import items
 import monster
 import projectile
 from player import Player
@@ -27,7 +30,7 @@ if __name__ == '__main__':
     clock = pg.time.Clock()
 
     player = Player([400, 300])
-    player.add_party_member("fire_dog", pg.Rect([100, 200, 100, 100]), Player.SPEED, item.FireSpawner([100.0, 100.0]))
+    player.add_party_member("fire_dog", pg.Rect([100, 200, 100, 100]), Player.SPEED, items.FireSpawner([100.0, 100.0]))
 
     while True:
         dt = clock.tick(MAX_FPS) / 1000.0
