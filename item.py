@@ -31,12 +31,15 @@ class Item(ABC):
 
 class FireSpawner(Item):
     '''Spawns fire'''
-    def __init__(self, start: list[float], direction: list[float], scale: list[float]) -> None:
+    def __init__(self, scale: list[float]) -> None:
         super().__init__()
         sprite = pg.transform.scale(
             pg.image.load("assets/fire.png"),
             scale
         )
+
+    def get_effect(self, mpos: list[float]) -> ItemEffect:
+        pass
 
 class PartySpawner(Item):
     '''Spawns a party member when activated'''
