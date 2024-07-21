@@ -4,6 +4,7 @@ pg.init()
 import entity
 import error
 import item
+import monster
 import projectile
 from player import Player
 

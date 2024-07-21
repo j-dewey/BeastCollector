@@ -4,6 +4,8 @@ from abc import ABC, abstractmethod
 from enum import Enum
 from typing_extensions import Any
 
+from projectile import Projectile
+
 '''
     ItemEffect and ItemEffectType determine the behaviour of an item
     when it gets used. The data that is expected from ItemEffect.data
@@ -37,6 +39,8 @@ class FireSpawner(Item):
             pg.image.load("assets/fire.png"),
             scale
         )
+        hitbox = pg.Rect(0, 0, scale[0], scale[1])
+        self.fire = Projectile(sprite, hitbox, 0.0, [0.0, 0.0])
 
     def get_effect(self, mpos: list[float]) -> ItemEffect:
         pass
