@@ -4,7 +4,7 @@ from error import Error, ErrorObject, Okay
 
 import pygame as pg
 
-from item import Item
+from item import Item, ItemEffect
 
 class Entity:
     def __init__(self, sprite: pg.Surface, rect: pg.Rect, speed: float) -> None:
@@ -18,14 +18,14 @@ class Entity:
     def move(self, dx: float, dy: float):
         self.rect.move_ip(dx, dy)
 
-class EntityList:
+class MonsterList:
     def __init__(self, max: int) -> None:
-        self.ents: list[Entity] = []
+        self.ents: list[Monster] = []
         self.max = max
 
     @staticmethod
-    def new_with(max: int, ents: list[Entity]) -> EntityList:
-        new = EntityList(max)
+    def new_with(max: int, ents: list[Monster]) -> MonsterList:
+        new = MonsterList(max)
         new.ents = ents[:max]
         return new
 
@@ -33,12 +33,13 @@ class EntityList:
         return len(self.ents) == self.max
 
 class Monster(Entity):
-    def __init__(self, name: str, rect: pg.Rect, speed: float) -> None:
+    def __init__(self, name: str, rect: pg.Rect, speed: float, attack: Item) -> None:
         sprite = pg.transform.scale(
             pg.image.load("assets/" + name + ".png"),
             [rect.width, rect.height]
         )
         super().__init__(sprite, rect, speed)
+        self._attack = attack
 
-    def attack(self, mpos: list[float]) -> None:
-        pass
+    def attack(self, mpos: list[float]) -> ItemEffect:
+        return self._attack.get_effect(mpos)

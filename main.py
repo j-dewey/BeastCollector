@@ -1,8 +1,10 @@
 import pygame as pg
 pg.init()
+
 import entity
 import error
 import item
+import projectile
 from player import Player
 
 # player movement commands
@@ -21,7 +23,7 @@ if __name__ == '__main__':
     clock = pg.time.Clock()
 
     player = Player([400, 300])
-    player.add_party_member("fire_dog", pg.Rect([100, 200, 200, 200]), Player.SPEED)
+    player.add_party_member("fire_dog", pg.Rect([100, 200, 100, 100]), Player.SPEED)
 
     while True:
         dt = clock.tick(MAX_FPS) / 1000.0

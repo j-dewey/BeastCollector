@@ -1,3 +1,5 @@
+import pygame as pg
+
 from abc import ABC, abstractmethod
 from enum import Enum
 from typing_extensions import Any
@@ -12,6 +14,7 @@ from typing_extensions import Any
 
 class ItemEffectType(Enum):
     SPAWN_PARTY_MEMBER = 0
+    SPAWN_PROJECTILE = 1
 
 class ItemEffect:
     def __init__(self, type: ItemEffectType, data: Any) -> None:
@@ -20,7 +23,20 @@ class ItemEffect:
 
 class Item(ABC):
     @abstractmethod
-    def get_effect(self) -> ItemEffect: pass
+    def get_effect(self, mpos: list[float]) -> ItemEffect: pass
+
+'''
+    Here are the actual items. Items also include spell effects for obvious reasons
+'''
+
+class FireSpawner(Item):
+    '''Spawns fire'''
+    def __init__(self, start: list[float], direction: list[float], scale: list[float]) -> None:
+        super().__init__()
+        sprite = pg.transform.scale(
+            pg.image.load("assets/fire.png"),
+            scale
+        )
 
 class PartySpawner(Item):
     '''Spawns a party member when activated'''
@@ -28,5 +44,5 @@ class PartySpawner(Item):
         super().__init__()
         self.selected = selected_member
 
-    def get_effect(self) -> ItemEffect:
+    def get_effect(self, mpos: list[float]) -> ItemEffect:
         return ItemEffect(ItemEffectType.SPAWN_PARTY_MEMBER, self.selected)
