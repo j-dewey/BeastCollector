@@ -14,6 +14,11 @@ from projectile import Projectile
     programmer and assumed true at run-time
 '''
 
+
+# Having an item contain a defined type which is read in the main loop
+# rather than creating subclasses of Item was chosen since item effects
+# spill out to other objects rather than being contained to that item
+# instance
 class ItemEffectType(Enum): # definition of Item.data
     SPAWN_PARTY_MEMBER = 0  # (mouse pos)
     SPAWN_PROJECTILE = 1    # ()
