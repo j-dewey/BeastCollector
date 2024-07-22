@@ -19,7 +19,7 @@ class FireSpawner(Item):
         self.fire = Projectile(sprite, hitbox, 0.0, [0.0, 0.0])
 
     def get_effect(self, mpos: list[float]) -> ItemEffect:
-        return ItemEffect(ItemEffectType.SPAWN_PROJECTILE, self.fire)
+        return ItemEffect(ItemEffectType.SPAWN_PROJECTILE, (self.fire))
 
 class PartySpawner(Item):
     '''Spawns a party member when activated'''

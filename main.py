@@ -10,6 +10,7 @@ import items
 import monster
 import projectile
 from player import Player
+import time
 
 # player movement commands
 UP_BUTTON = pg.K_w
