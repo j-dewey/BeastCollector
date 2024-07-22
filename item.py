@@ -14,9 +14,9 @@ from projectile import Projectile
     programmer and assumed true at run-time
 '''
 
-class ItemEffectType(Enum):
-    SPAWN_PARTY_MEMBER = 0
-    SPAWN_PROJECTILE = 1
+class ItemEffectType(Enum): # definition of Item.data
+    SPAWN_PARTY_MEMBER = 0  # (mouse pos)
+    SPAWN_PROJECTILE = 1    # ()
 
 class ItemEffect:
     def __init__(self, type: ItemEffectType, data: Any) -> None:

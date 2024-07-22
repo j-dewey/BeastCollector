@@ -37,16 +37,23 @@ if __name__ == '__main__':
         for ev in pg.event.get():
             if ev.type == pg.QUIT:
                 quit()
+            # this activates items
             elif ev.type == pg.MOUSEBUTTONDOWN:
-                player.party_selected = 0
-                player.controlling_party = True
+                effect = player.activate_item(ev.pos)
+                match effect.type:
+                    case item.ItemEffectType.SPAWN_PARTY_MEMBER:
+                        player.controlling_party = True
+                        player.active_party_member = player.party_selected
+                    case item.ItemEffectType.SPAWN_PROJECTILE:
+                        print('spawning projectile')
+            # this is any key press
             elif ev.type == pg.KEYDOWN:
                 if ev.key == SWITCH_ACTIVE and player.party_selected > -1:
                     # ^need to ensure that a member is active before switch
                     player.controlling_party = not player.controlling_party
                 elif ev.key == RECALL_BUTTON:
                     player.controlling_party = False
-                    player.party_selected = -1
+                    player.active_party_member = -1
 
         keys = pg.key.get_pressed()
         player.handle_movement(
