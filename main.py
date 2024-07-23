@@ -46,6 +46,7 @@ if __name__ == '__main__':
                         player.controlling_party = True
                         player.active_party_member = player.party_selected
                     case item.ItemEffectType.SPAWN_PROJECTILE:
+                        # need: where to spawn + direction
                         print('spawning projectile')
             # this is any key press
             elif ev.type == pg.KEYDOWN:

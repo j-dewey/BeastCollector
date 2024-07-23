@@ -21,7 +21,7 @@ from projectile import Projectile
 # instance
 class ItemEffectType(Enum): # definition of Item.data
     SPAWN_PARTY_MEMBER = 0  # (mouse pos)
-    SPAWN_PROJECTILE = 1    # ()
+    SPAWN_PROJECTILE = 1    # (spawn pos, direction)
 
 class ItemEffect:
     def __init__(self, type: ItemEffectType, data: Any) -> None:
